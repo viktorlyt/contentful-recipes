@@ -2,7 +2,7 @@ import { createClient } from "contentful";
 import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-const client = createClient({
+export const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
@@ -35,7 +35,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function RecipeDetails({ recipe }) {
+const RecipeDetails = ({ recipe }) => {
   const { featuredImage, cookingTime, title, ingredients, method } =
     recipe.fields;
 
@@ -44,8 +44,8 @@ export default function RecipeDetails({ recipe }) {
       <div className="banner">
         <Image
           src={"https:" + featuredImage.fields.file.url}
-          width={featuredImage.fields.file.details.image.width}
-          height={featuredImage.fields.file.details.image.height}
+          width={700}
+          height={400}
         />
         <h2>{title}</h2>
       </div>
@@ -91,4 +91,6 @@ export default function RecipeDetails({ recipe }) {
       `}</style>
     </div>
   );
-}
+};
+
+export default RecipeDetails;
