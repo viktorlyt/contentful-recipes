@@ -2,7 +2,7 @@ import { createClient } from "contentful";
 import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-export const client = createClient({
+const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
@@ -44,8 +44,9 @@ const RecipeDetails = ({ recipe }) => {
       <div className="banner">
         <Image
           src={"https:" + featuredImage.fields.file.url}
-          width={700}
-          height={400}
+          alt="recipe-image"
+          width={900}
+          height={450}
         />
         <h2>{title}</h2>
       </div>
